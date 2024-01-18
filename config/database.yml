@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: rails
+  password: rails
+
+development:
+  <<: *default
+  database: my-dope-api_development
+
+test:
+  <<: *default
+  database: my-dope-api_test
+
+production:
+  <<: *default
+  database: my-dope-api_production
+  username: my-dope-api
+  password: <%= ENV["MY-DOPE-API_DATABASE_PASSWORD"] %>
