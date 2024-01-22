@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-  validates :title, :body, presence: true
+  validates :title, :body, :price, presence: true
+  has_one_attached :file
 end

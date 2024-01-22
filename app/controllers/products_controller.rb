@@ -4,12 +4,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[update destroy]
   def index
     products = Product.all
-    render json: products
+    render json: products, each_serializer: ProductSerializer
   end
 
   def create
     product = Product.create(product_params)
-    render json: product
+    render json: product, serializer: ProductSerializer
   end
 
   def update
@@ -32,6 +32,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :body)
+    params.require(:product).permit(:title, :body, :price, :file)
   end
 end

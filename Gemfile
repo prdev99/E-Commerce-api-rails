@@ -41,6 +41,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'pry-rails'
+
+  gem 'faker'
 end
 
 group :development do
@@ -52,3 +54,5 @@ gem 'rack-cors'
 
 gem 'devise'
 gem 'devise-jwt'
+
+gem 'active_model_serializers', '~> 0.10.2'
