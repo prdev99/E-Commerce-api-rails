@@ -1,7 +1,7 @@
 # app/controllers/products_controller.rb
 
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[update destroy]
+  before_action :set_product, only: %i[update destroy show]
   def index
     products = Product.all
     render json: products, each_serializer: ProductSerializer
@@ -12,9 +12,15 @@ class ProductsController < ApplicationController
     render json: product, serializer: ProductSerializer
   end
 
+  def show
+    return unless @product.present?
+
+    render json: @product
+  end
+
   def update
     return unless @product.present?
-    return unless @product.update(product_params)
+    return render json: { message: 'Product Error' } unless @product.update(product_params)
 
     render json: @product
   end
