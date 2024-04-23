@@ -6,3 +6,5 @@ class ProductSerializer < ActiveModel::Serializer
     rails_blob_url(object.file, host: ActionController::Base.default_url_options[:host]) if object.file.attached?
   end
 end
+
+# dd
