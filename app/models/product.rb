@@ -17,7 +17,7 @@ class Product < ApplicationRecord
       query: {
         bool: {
           should: [
-            { wildcard: { title: "#{query.downcase}*"} },
+            { wildcard: { title: "*#{query.downcase}*" } },
             { multi_match: { query: query, fields: %w[title price] } }
           ]
         }
