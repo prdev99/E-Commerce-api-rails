@@ -3,14 +3,19 @@ development:
   encoding: unicode
   database: online_learning
   pool: 5
+  username: postgres
+  password: postgres
 
 test:
   adapter: postgresql
   encoding: unicode
   database: online_learning_test
   pool: 5
+  username: postgres
+  password: postgres
 
 production:
   adapter: postgresql
   encoding: unicode
   url: <%= ENV["DB_URL"] %>
+  
