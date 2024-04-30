@@ -5,26 +5,21 @@ class Product < ApplicationRecord
   validates :title, :body, :price, presence: true
   has_one_attached :file
 
-  def self.search_by_first_letter(letter)
-    __elasticsearch__.search(
-      {
-        query: {
-          prefix: {
-            title: letter
-          }
-        }
-      }
-    )
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :title, type: 'text'
+      indexes :price, type: 'float'
+    end
   end
 
-  def self.search_full_text(query)
+  def self.search(query)
     __elasticsearch__.search(
-      {
-        query: {
-          multi_match: {
-            query:,
-            fields: %w[title price]
-          }
+      query: {
+        bool: {
+          should: [
+            { wildcard: { title: "#{query.downcase}*"} },
+            { multi_match: { query: query, fields: %w[title price] } }
+          ]
         }
       }
     )
