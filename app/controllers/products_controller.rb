@@ -2,6 +2,7 @@
 
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[update destroy show]
+
   def index
     products = Product.all
     render json: products, each_serializer: ProductSerializer

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     delete 'logout', to: 'users/sessions#destroy'
   end
   resources :products
+  get '/search', to: 'search#search'
 end
