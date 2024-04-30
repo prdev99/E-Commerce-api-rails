@@ -1,17 +1,16 @@
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-
-development:
-  <<: *default
-  database: my-dope-api_development
+  database: online_learning
+  pool: 5
 
 test:
-  <<: *default
-  database: my-dope-api_test
+  adapter: postgresql
+  encoding: unicode
+  database: online_learning_test
+  pool: 5
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   url: <%= ENV["DB_URL"] %>
