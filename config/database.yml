@@ -3,14 +3,16 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
+  username: rails
+  password: rails
 
 development:
   <<: *default
-  database: assignment_development
+  database: my-dope-api_development
 
 test:
   <<: *default
-  database: assignment_test
+  database: my-dope-api_test
 
 production:
   <<: *default
